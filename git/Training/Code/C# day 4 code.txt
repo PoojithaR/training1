@@ -1,0 +1,163 @@
+Interface Example program
+
+interface ICustomer
+    {
+        void Print();
+        void show();// only declaration
+    }
+    interface ISupplier
+    {
+        void Print();
+    }
+    class InterfaceEg :ICustomer, ISupplier
+    {
+         void ICustomer.Print()
+        {
+            Console.WriteLine("Customers Print Method");
+        }
+         void ISupplier.Print()
+        {
+            Console.WriteLine("Suppliers Print Method");
+        }
+        public void show()
+        {
+            Console.WriteLine("Show Method");
+        }
+
+    }
+    class tester
+    {
+        public static void Main()
+        {
+            
+
+            InterfaceEg ieg = new InterfaceEg();
+            ICustomer ic = new InterfaceEg();
+            ic.Print();
+            ISupplier isp= new InterfaceEg();
+            isp.Print();
+           //((ICustomer)ieg).Print();
+           //((ISupplier)ieg).Print();
+           // ieg.show();
+            Console.Read();
+        }
+    }
+}
+
+
+Dynamic Polymorphism program
+
+ class parent
+    {
+      protected int Age;
+    public virtual void getAge()
+        {
+            Console.WriteLine("Parents Age is {0}", Age);
+            Console.Read();
+        }
+        public parent()
+        {
+            Console.WriteLine("Parent Here");
+            Console.Read();
+        }
+        public parent(int a)
+        {
+
+            Console.WriteLine("Parent Here");
+            Age = a;
+            Console.Read();
+        }
+        
+    }
+
+    class child : parent
+    {
+        string name;
+        new int Age;
+       
+        public child()
+        {
+            Console.WriteLine("Child here");
+            Console.ReadLine();
+        }
+        public child(int x,int y) : base(y)
+        {
+            Console.WriteLine("Child here");
+            Age = x;
+            Console.ReadLine();
+        }
+
+       public override void getAge()
+        {
+            name = "Cute Child";
+           // base.getAge();
+            Console.WriteLine("childs age is {0}", Age);
+            Console.WriteLine("childs name is {0}", name);
+            Console.Read();
+        }
+        public void showname()
+        {
+            name = "i am a child";
+            
+            Console.WriteLine("childs age is {0}", Age);
+            Console.WriteLine("childs name is {0}", name);
+           
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //   child c = new child(10,40) ;
+            parent p = new parent();
+            p.getAge();
+            p = new child();
+            p.getAge();
+            //  c.getAge();
+            //  c.getAge();
+            Console.Read();
+        }
+    }
+}
+
+
+// usage of Constant and Static members
+
+ class Class1
+    {
+        const double pi = 3.14159;
+        static string shape ; // static or class variables
+       public string name;
+    static Class1()
+        {
+            shape = "circle";
+          
+           
+        }
+        public double CalculateArea(int radius)
+        {
+            Console.WriteLine("calculating the area of {0}", shape);
+
+            double a;
+            a = pi * radius * radius;
+            return a;
+        }
+            static void Main(string[] args)
+            {
+            int rad;
+                double r;
+            Class1 c = new Class1();
+            Console.WriteLine(c.name);
+            Class1 c2 = new Class1();
+            c2.name = "name2";
+                Console.WriteLine("Enter Radius: ");
+                rad = Convert.ToInt32(Console.ReadLine());
+             r = c.CalculateArea(rad);       
+                Console.WriteLine("Radius: {0}, Area: {1}", rad, r);
+                Console.ReadLine();
+            r = c2.CalculateArea(rad);
+            Console.WriteLine("Radius: {0}, Area: {1}", rad, r);
+            Console.ReadLine();
+        }
+        }
+}

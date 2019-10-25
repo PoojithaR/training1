@@ -1,0 +1,95 @@
+
+//Class Example
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OOPrograming
+{
+    class Employee
+    {
+        int Empid;
+        string Name;
+        float Salary;
+
+        public Employee()
+        {
+            Empid = 1;
+            Name = "Rekha";
+            Salary = 12500.75f;
+        }
+        public Employee(int Empid,string Name, float Salary)
+        {
+           this.Empid = Empid;
+           this.Name = Name;
+           this.Salary = Salary;
+
+        }
+        public void accept()
+        {
+            Empid = Convert.ToInt32(Console.ReadLine());
+            Name = Console.ReadLine();
+            Salary = float.Parse(Console.ReadLine());
+        }
+        public void show()
+        {
+            Console.WriteLine("Details of the Employee are :{0} {1} {2}", Empid, Name, Salary);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Employee E1 = new Employee();
+            E1.show();
+            Employee E2 = new Employee(2, "Margarett", 10578.65f);
+            E2.show();
+            Console.Read();
+        }
+    }
+}
+
+
+//Example of a structure
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyFirstConsole
+{
+  struct Student
+    {
+       public int v1;
+        public int v2;
+    }
+    class Structeg
+    {
+        static void Main()
+        {
+            Student s = new Student();
+            s.v1 = 10;
+            s.v2 = 20;
+            Console.WriteLine("Initial values of S");
+                Console.WriteLine(s.v1 + s.v2);
+            Student y = new Student();
+            y = s;
+            Console.WriteLine("Initial Values of Y");
+            Console.WriteLine(y.v1 + y.v2);
+            s.v1 = 50;
+            s.v2 = 100;
+            Console.WriteLine("Post Changes of S");
+            Console.WriteLine(s.v1 + s.v2);
+            Console.WriteLine("Y After changes in s");
+            Console.WriteLine(y.v1 + y.v2);
+            Console.Read();
+        }
+
+    }
+}

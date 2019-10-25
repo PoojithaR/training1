@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PolymorphismEg
+{
+    class Distance
+    {
+        int dist;
+
+        public static Distance operator +(Distance d1, Distance d2)
+        {
+           // Distance Temp = new Distance();
+          //  Temp.dist = d1.dist + d2.dist;
+            return d1+d2;
+        }
+
+
+        static void Main()
+        {
+            Distance chennai = new Distance();
+            Distance Bangalore = new Distance();
+            chennai.dist = 200;
+            Bangalore.dist = 500;
+            Distance Bombay = new Distance();
+            // Distance Bombay = chennai + Bangalore;
+            Bombay = chennai + Bangalore;
+            Console.WriteLine("the overall Distance is {0}", Bombay);
+            Console.Read();
+        }
+    }
+}------------------------------------------------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PolymorphismEg
+{
+    class MethodOverloading
+    {
+        public  void swap1(int num1, int num2)
+        {
+            int temp;
+            temp = num1;
+            num1 = num2;
+            num2 = temp;
+            Console.WriteLine("Swapped Numbers are : {0} {1}", num1, num2);
+            Console.Read();
+
+        }
+        public void swap1(char a, char b)
+        {
+            char temp;
+            temp = a;
+            a = b;
+            b = temp;
+            Console.WriteLine("Swapped Character are {0} {1}", a, b);
+            Console.Read();
+        }
+    }
+   class Program
+   {
+        static void Main(string[] args)
+        {
+            MethodOverloading mo = new MethodOverloading();
+            mo.swap1(5, 10);
+            mo.swap1('a', 'z');
+            Console.Read();
+         }
+    }
+    

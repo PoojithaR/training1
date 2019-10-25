@@ -1,0 +1,19 @@
+1.Create table emp9 with empno, ename, sal, doj columns and perform the following operations in a single transaction
+a. First insert 3 rows 	
+b. Update the second row sal with 15% increment 
+c. Delete first row.
+After completing above all actions how to recall the deleted row without losing increment of second row
+
+
+2.Create a stored procedure to generate multiplication tables up to a given number.
+
+
+3.Create a user defined function calculate Bonus for all employees of a  given job using following conditions
+a.For Deptno10 employees 15% of sal as bonus.
+b.For Deptno20 employees  20% of sal as bonus
+c.For Others employees 5%of sal as bonus
+
+
+4.Create a trigger to restrict data manipulation on EMP table during General holidays. Display the error message like “Due to Independence day you cannot manipulate data”
+Note: Create holiday table as (holiday_date,Holiday_name) store at least 4 holiday details
+

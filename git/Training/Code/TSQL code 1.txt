@@ -1,0 +1,242 @@
+--pl/sql
+--T-Sql Programming
+/*BEGIN
+    -- Declare variables
+    -- T-SQL Statements
+END;*/
+
+Begin
+ 
+  -- Declaring a variable
+  Declare @v_Result Int
+  -- Declaring a variable with a value of 50
+  Declare @a Int = 50
+  -- Declaring a variable with a value of 100
+  Declare @b Int = 100
+  -- Sum
+  Set @v_Result = @a + @b
+  -- Print out Console
+  print @v_Result
+End
+
+--program 2
+declare @Var1 int;
+declare @Var2 int;
+set @Var1=10;
+set @Var2=40;
+begin
+if( @Var1 > @Var1)
+print 'Var1 is greater'
+else
+print 'Var2 is greater'
+end
+
+--Stored Procedure
+/*Create proc <procedure_Name> 
+Declaration
+As 
+Begin 
+<SQL Statement> 
+End 
+*/ 
+
+
+create procedure sp_Sample
+as
+begin
+	select 'Hello'
+end
+
+begin
+	exec sp_Sample
+end
+
+--creating a store procedure to fetch student personal information
+Create procedure sp_Deptdetails
+as
+begin
+select * from Dept
+end
+
+
+--execute the store procedure
+execute sp_Deptdetails
+--or 
+exec sp_Deptdetails
+--or
+sp_Deptdetails
+
+
+--To drop
+drop procedure sp_Deptdetails
+
+
+--delete 
+--to alter the procedure use alter instead of create
+create procedure sp_deleteemp
+as
+begin
+--delete command
+delete from Employee where Emp_id=1008
+end
+
+exec sp_deleteemp
+
+--with parameters
+
+create  procedure sp_SampleParam
+(@Name varchar(20))
+as
+begin
+	select concat('Hello ' , @Name)
+end
+begin
+	exec sp_SampleParam 'Somu'
+end
+
+
+create proc sp_GetEmpdepname
+ (@Emp_id int,
+ @Gender varchar(20))
+as
+begin
+select e.Emp_Name, d.Dept_Name from Employee e,Dept d where e.Dept_id=d.Dept_id
+and Emp_id=@Emp_id and Gender= @Gender
+end
+
+Exec sp_GetEmpdepname 1001,'M'
+--or
+Exec sp_GetEmpdepname @Emp_id=1001,@Gender='M'
+
+
+alter proc sp_updatesalary
+(@Increment int,@Id int)
+
+as
+begin
+declare @Newsalary int
+set @Newsalary=(select Salary from Employee where Emp_id=@Id)
+
+if(@Newsalary<30000)
+begin
+set @Newsalary=@Newsalary+@Increment
+print @Newsalary
+end
+
+else
+begin
+print 'Salary is greater than 30000'
+end
+end
+
+exec sp_updatesalary 2000,1004
+
+--with out parameter
+
+create proc sp_Taxcalculator
+(@id int,@Annualsalary int output)
+as
+begin
+declare @Temp int
+select @Temp=(Salary*12) from Employee where Emp_id=@id
+  if (@Temp>250000)
+  begin
+	set @Annualsalary=@Temp
+ end
+	else
+	begin
+	  print 'Salary is less than 250000 '
+	end
+end
+
+
+declare @ASalary int
+declare @Taxamount float
+exec sp_Taxcalculator 1002 ,@ASalary output
+set @Taxamount=@ASalary/100 --please enter the correct formula
+print 'Tax Amount'+'  '+cast( @Taxamount as varchar(10))
+
+
+--with return 
+create proc sp_Totaldept
+as
+begin
+return (select count(Dept_id) from Dept)
+end
+
+exec sp_Totaldept
+
+declare @Total_dept int
+exec @Total_dept = sp_Totaldept
+select @Total_dept 
+
+--trying to return a string value //error will return only  integer
+create proc sp_Location
+as
+begin
+return (select Location from Dept where Dept_id=102)
+end
+
+declare @Location nvarchar(20)
+exec @Location = sp_Location
+select @Location 
+
+--error Handling
+alter Procedure My_Proc  
+AS  
+begin  
+BEGIN TRY  
+SELECT SALARY+Emp_Name  From Employee Where Emp_id=1009
+END TRY  
+BEGIN CATCH  
+--SELECT ERROR_PROCEDURE() AS ProcName; 
+RAISERROR (15600,-1,-1, 'invalid operation in Myproc')  
+END CATCH;  
+END  
+
+
+Exec My_Proc 
+ --Function
+
+--function may or maynot have value but return value
+/*CREATE FUNCTION Function_Name(@Parameter_Name Data_type, 
+                         .... @Parameter_Name Data_type
+                             )
+RETURNS Data_Type
+AS
+   BEGIN
+      -- Function Body
+      
+      RETURN Data 
+   END*/
+   --function cant return text,ntext,image,cursor and timestamp
+   --Scalar Function
+
+
+   create function fun_JoinEmpColumnInfo  
+(  
+@EmpName nvarchar(30),
+   @EmpContact nvarchar(15),  
+   @Gender nvarchar(20)
+  
+  
+)  
+returns nvarchar(100)  
+as  
+begin return(select @EmpName+ ' ' +@EmpContact+ ' ' + @Gender)  
+end  
+   
+--executing the function
+select Emp_id as id,dbo.fun_JoinEmpColumnInfo(Emp_Name,Phoneno,Gender)as detail
+ from Employee
+
+   --Table Valued Functions
+Create function Fun_EmployeeInformation()      
+returns table       
+as      
+return(select * from Employee  )
+
+select Emp_Name,Emp_id,Designation from Fun_EmployeeInformation() 
+
+--call a function from procedure
+

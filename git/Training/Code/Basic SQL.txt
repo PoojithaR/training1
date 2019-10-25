@@ -1,0 +1,176 @@
+--create database
+create database EmployeeDatabase
+--use database
+use EmployeeDatabase
+--create Employee table
+create table Employee(Emp_id int primary key,Emp_Name nvarchar(40),
+Phoneno nvarchar(20),Hire_date date,Salary int)
+
+--Teach all the constrains with example
+--Teach Dml commands (create,alter,drop,truncate)
+--inserting data into Employee table
+insert into Employee values(1001,'Sai','123456789','2011-01-02',70000)
+insert into Employee values(1002,'Renu','223456789','2011-01-30',60000)
+insert into Employee values(1003,'Santhosh','123456789','2012-02-12',40000)
+insert into Employee values(1004,'Tim','123456789','2012-02-02',50000)
+insert into Employee values(1005,'Anu','123456789','2013-04-02',30000)
+insert into Employee values(1006,'Priya','123456789','2014-05-03',25000)
+insert into Employee (Emp_id,Emp_Name,Hire_date,Salary)
+values(1007,'Subha','2014-05-03',25000)
+--view the employee table
+select * from Employee
+
+--Alter table to add designation
+alter table Employee add Designation nvarchar(30) 
+
+--delete
+delete from Employee where Emp_id=1006
+
+--insert 1006
+--below statement will delete all the records in table
+delete from Employee
+
+--update 
+
+update Employee set Phoneno='9966772234' where Emp_id=1006
+
+--select clause 
+
+select Emp_id,Emp_Name from Employee
+
+--AliaseName
+select Emp_Name as EmployeeName from Employee
+
+--TOP selects top 3 records
+select top 3 * from Employee
+
+select top 2 Emp_Name,Salary from Employee
+--top with percent
+select top 10 percent Emp_Name,Salary from Employee
+
+--Relational operator and Logical >,<,>=,<=,=,or,and,between
+
+select Emp_Name from Employee where Salary>30000
+
+select Emp_Name from Employee where Salary>=30000 
+
+select Emp_Name,Salary from Employee where Salary<30000
+
+select Emp_Name from Employee where Salary>20000 and Salary<30000
+
+select Emp_Name from Employee where Hire_date between '2012-02-12' and '2014-05-03'
+
+--Negative operator
+select * from Employee where not Hire_date between '2012-02-12' and '2014-05-03'
+
+
+
+
+--null values
+
+select * from Employee where Phoneno is null
+
+update Employee set Phoneno='7890123456' where Phoneno is null
+
+--not null
+select * from Employee where Phoneno is not null
+
+--in operator
+select * from Employee where Emp_Name in ('Sai','Suresh')
+
+--Arthimetic operator +,-,*,/,%
+
+update Employee set Salary=(Salary+1000) where Salary<30000
+
+select  Emp_Name,(Salary*12) as AnnualSalary from 
+Employee where (Salary*12) > 500000
+
+--Like operator
+--Wildcard Characters  Percent sign (%),Underscore (_),Bracket ([]),Caret (^)
+--Returns Name starts with S
+select Emp_Name from Employee where Emp_Name like'S%'
+--Returns Name end with S
+select Emp_Name from Employee where Emp_Name like'%h'
+--Returns Name contain m in between 
+select Emp_Name from Employee where Emp_Name like'%i_%' --or '%i%'
+
+--Like with Underscore (_)
+ 
+--It is used to search for a single character.
+
+select Emp_Name from Employee where Emp_Name like'Sa_'--Sai
+
+select Emp_Name from Employee where Emp_Name like'___ya' --priya
+
+--Like with Bracket ([])
+ 
+--It is used to search for any single character within the specified range.
+-- return all columns from UserDetail table where FirstName name begin with 'S' or 'U'
+select Emp_Name from Employee where Emp_Name LIKE '[SU]%' 
+  
+-- return all columns from UserDetail table where FirstName name 
+--begin with 'K' or 'U' ends with r
+select Emp_Name from Employee where Emp_Name LIKE '[KU]%r' 
+
+-- return all columns from UserDetail table where Name name begin 
+--with 'S' and hold an 'e' in the second place.
+SELECT Emp_Name from Employee where Emp_Name LIKE 'S[e]%'
+
+--Like with Caret (^)
+ 
+--It is used to search for any single character that is not the specified character.
+--return all columns from UserDetail table where FirstName name begin with 'R' and does not contain an 'H'  as the second place
+SELECT Emp_Name from Employee where Emp_Name LIKE 'R[^H]%'   
+
+  
+SELECT Emp_Name from Employee where Emp_Name LIKE '%N[^R]'  
+-- return all columns from UserDetail table where FirstName name Contain with 'N' and does not contain an 'R' 
+
+
+
+--create a department table:Table 2
+create table Dept(Dept_id int identity(101,1) primary key,
+Dept_Name nvarchar(30),Location nvarchar(40))
+
+--insert into department table
+
+insert into Dept values('Development','Chennai')
+insert into Dept(Dept_Name,Location) values ('Marketing','Chennai')
+insert into Dept(Dept_Name,Location) values ('Finance','Mumbai')
+
+
+select * from Dept
+
+
+--adding dept id in employee table foreign key
+
+alter table Employee add Dept_id int foreign key references Dept(Dept_id)
+
+select * from Employee
+
+--insert dept id in employee table
+update Employee set Dept_id=104 where Emp_id=1001
+--similarly update for all employees
+
+select * from Employee
+Select * from Dept
+
+--distinct
+
+select distinct(Location) from Dept
+
+--Aggregate Function Min,Max ,sum,Avg,Count
+
+select Max(Salary) as MaxSalary from Employee
+
+select Min(Salary) as MinSalary from Employee
+
+--count the total no of employees in dept 102
+select COUNT(Emp_id) from Employee where Dept_id=102
+--Avg salary of employee of any department
+select AVG(Salary) from Employee where  Dept_id=101
+
+--Function cannot be used in the RHS of where Clause
+Select * from Employee
+ where Salary> Max(Salary) (illegal)
+

@@ -1,0 +1,10 @@
+1. Write a T-SQL program to find the factorial of a given number
+
+2. Write a T-SQL program to accept salary and generate a complete payslip of an employee with respect to the following condition
+  - HRA as 10% of salary
+  - PF as 8% of salary
+  - DA as 20% of salary
+  - IT as 5% of salary
+  - Deductions as sum of PF and IT
+  - Gross salary as sum of Salary,HRA,DA 
+ - Net salary as gross salary-deductions 

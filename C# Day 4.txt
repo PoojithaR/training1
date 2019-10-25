@@ -1,0 +1,6 @@
+1. Create an Interface named Instrument that provides a virtual method called GetSound which returns a string. 
+
+Create a derived class named Guitar that inherits from Instrument.
+Implement a method called 'GetSound' which writes the result of the GetSound method to the Console followed by a new line.
+
+2. Implement The above through Overriding also. 

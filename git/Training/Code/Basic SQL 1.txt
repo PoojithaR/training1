@@ -1,0 +1,152 @@
+--Add Column ManagerId to Employee table
+alter table Employee add ManagerId int foreign key references Employee(Emp_id)
+
+--Order by Asc ,Desc
+--default sort by ascending order
+
+select Dept_id,Dept_Name  from Dept order by Dept_Name 
+
+select Dept_id,Dept_Name  from Dept order by Dept_Name desc
+--select Deptid and deptname from dept whose location is chennai or mumbai and order by deptname
+select Dept_id,Dept_Name,Location  from Dept 
+where Location in('Chennai','Mumbai')
+order by Dept_Name desc
+
+select Dept_id,Dept_Name,Location  from Dept 
+where Location ='Chennai' or Location='Mumbai'
+order by Dept_Name desc
+
+--Adding Gender column to Employee table
+alter table Employee add Gender nvarchar(20) 
+
+--Groupby
+
+/*SELECT
+    select_list
+FROM
+    table_name
+GROUP BY
+    column_name1,
+    column_name2 ,...,
+	ORDER BY column1, column2;*/
+
+--display the no of employees under each manager
+SELECT ManagerId, COUNT(*) AS "Number of employees"
+FROM Employee
+GROUP BY ManagerId order by ManagerId desc
+
+--return the name of each department and the maximum salary in the department.
+
+SELECT b.Dept_Name, MAX(a.Salary) AS "Highest salary"
+FROM Employee a,Dept b
+where a.Dept_id=b.Dept_id
+GROUP BY  b.Dept_Name
+
+
+--no of male and female in a dept
+select count(Gender) from Employee where Dept_id=102 group by Gender
+
+--no of male and female in an organization
+select distinct(Gender),count(Gender) 
+from Employee
+group by Gender 
+order by Gender desc
+
+
+--
+SELECT Dept_id,Count(Emp_id)  as No_of_Employees ,sum(Salary) as TotalSalary FROM Employee 
+GROUP BY Dept_id order by Dept_id desc
+
+--
+SELECT Dept_id,Count(Emp_id)as No_of_Employees ,Gender FROM Employee 
+GROUP BY Dept_id,Gender
+--Having
+/*SELECT column1, function_name(column2)
+FROM table_name
+WHERE condition
+GROUP BY column1, column2
+HAVING condition
+ORDER BY column1, column2;*/
+
+
+SELECT Dept_id, MIN(Salary) AS "Lowest salary"
+FROM Employee
+GROUP BY Dept_id
+HAVING MIN(Salary) >= 30000
+order by Dept_id
+
+--below statement will raise an error -- may not appear in the WHERE clause
+SELECT Dept_id, MIN(Salary) AS "Lowest salary"
+FROM Employee
+where MIN(Salary) >= 30000
+GROUP BY Dept_id 
+order by Dept_id
+
+--select the mgrid whose has morethan 2 employee
+select ManagerId,count(Emp_id) from Employee
+group by ManagerId
+having count(Emp_id)>2
+
+--for More example 
+--https://www.c-sharpcorner.com/uploadfile/rohatash/using-having-clause-in-sql-server-2012/
+
+--Joins
+--add some fields with null values in employee and dept table
+
+--Inner join
+
+select * from Employee a
+inner join 
+Dept b
+on a.Dept_id=b.Dept_id
+
+--left Join or left outer join
+select * from Employee a
+left join 
+Dept b
+on a.Dept_id=b.Dept_id
+
+
+Select Mgr.Emp_Name 'Mgr Name',
+count(Emp.Emp_Name) 'No of Employees'
+from Employee Emp
+left outer join
+Employee Mgr
+on Emp.ManagerId = Mgr.Emp_Id
+where Mgr.Emp_Name is not null
+group by Emp.ManagerId,Mgr.Emp_Name
+having count(Emp.Emp_Name)>1
+
+
+--Right join or right outer join 
+
+select * from Employee a
+right outer join 
+Dept b
+on a.Dept_id=b.Dept_id
+
+--full join or full outer join 
+select * from Employee a
+full outer join 
+Dept b
+on a.Dept_id=b.Dept_id
+
+--self join
+select e.Emp_Name as Employee,m.Emp_Name as Manager
+from Employee e inner join Employee m
+on e.ManagerId=m.Emp_id
+
+--cross join
+select count(*) 
+from Employee cross join Dept
+
+select e.Emp_Name,d.Dept_Name
+from Employee e cross join Dept d
+
+
+
+
+
+
+
+

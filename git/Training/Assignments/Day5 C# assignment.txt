@@ -1,0 +1,22 @@
+1. Create an Abstract class Student with  Name, StudentId, Grade as members and also an abstract method Boolean Ispassed(grade) which takes grade as an input and checks whether student passed the course or not.  
+
+Create 2 Sub classes Undergraduate and Graduate that inherits all members of the student and overrides Ispassed() method 
+
+For the UnderGrad class, if the grade is above 70.0, then isPassed returns true, otherwise it returns false. For the Grad class, if the grade is above 80.0, then isPassed returns true, otherwise returns false.
+
+2. Create an Employee class with Empid int, Empname string, Salary float. Pass values to the members through Constructor.
+
+Create a derived class called ParttimeEmployee with Wages as a data member. Instantiate the base class through the derived class constructor 
+
+Exception Handling
+
+3. Create an console application to book train tickets. Create a Passanger class with (Name, Age) and write a function called TicketBooking(no_of_tickets) that takes no.of tickets to be booked. If the no of tickets is > 2 per booking, raise an user defined exception, and print "cannot book more than 2 tickets". Else Print  "Ticket Booked Successfully". Add a Test class to call TicketBooking method by accepting all required details.
+
+4. Write a class called LoanProcess with Loan_No, Customer Name, LoanAmount, EMI_Amount, Account_Balance as its members. Create a method calculate_EMI() for the LoanAmount , with the rate of interest as 13% for a total of 3 years and store it in the EMI_Amount. The rest of the information to be passed through constructors. Write another function CheckBalance() which checks if the Account_Balance is less than the EMI_AMount. If yes then throw a custom exception. Display " Not Sufficient Balance to repay Loan" in the finally. Give explanatory comments.
+
+
+Collections
+
+5. Write a program to find the Sum and the Average points scored by the teams in the IPL. Create a Class called Cricket that has a function called Pointscalculation(int no_of_matches) that takes no.of matches as input and accepts that many scores from the user. The function should then display the Average and Sum of the scores
+
+6.Create an Interface IStudent with StudentId and Name as Properties, ShowDetails() as its method. Create 2 classes Dayscholar and Resident that implements the interface Properties and Methods.

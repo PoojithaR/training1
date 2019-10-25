@@ -1,0 +1,22 @@
+﻿Assignment -  Day 6
+Time 90 mins
+1.Write a program in C# to accept the name of the user from input and greet the user as:
+	“Hi! username 
+	Welcome to the world of C#”
+20 min
+
+2.Accept a number from the user and display whether the given number is an odd number or even number.
+20 min
+
+3. Create a program, which accepts 3 numbers as input from the user and prints the largest and smallest of 3 numbers.
+20 min
+
+4.Write a program which accepts input of marks for C#,asp.net and Sql Server(3 subjects),calculates the average and prints result as passed or failed
+If avg < 50 then failed else passed.
+20 min
+
+5.Write a program in C# to display temperature in Celsius. Accept the temperature in Fahrenheit.
+10 min
+
+
+

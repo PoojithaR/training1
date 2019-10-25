@@ -1,0 +1,72 @@
+using System.Data.SqlClient;
+
+namespace ADOEg
+{
+    class Program 
+    {
+       static SqlConnection con;
+        static SqlDataReader dr;
+        SqlCommand cmd;
+        //  string connectiondetails = "\\infch03197"
+        public SqlConnection getConnection()
+        {
+            con = new SqlConnection("data source=.;initial catalog=dbstudy;user id=sa;password=newuser123#");
+            con.Open();
+            return con;
+        }
+        public void DataSelect()
+        {
+        con = getConnection();
+           cmd = new SqlCommand("select * from tblEmployee",con);
+            dr = cmd.ExecuteReader();
+            while(dr.Read())
+            {
+                Console.WriteLine("Employee id :" + dr[0]);
+                Console.WriteLine();
+                Console.WriteLine("Employee name: " + dr[1]);
+                Console.WriteLine();
+                Console.WriteLine("Salary :" + dr[2]);
+                Console.WriteLine();
+                Console.WriteLine("Gender :" + dr[3]);
+                Console.WriteLine();
+                Console.WriteLine("Department Id :" + dr[4]);
+            }
+            Console.Read();
+        } 
+
+        public void DataInsert()
+        {
+            con = getConnection();
+            Console.WriteLine("Please enter name, salary, gender, deptid for the employee");
+            string ename = Console.ReadLine();
+            float esal = float.Parse(Console.ReadLine());
+            string egender = Console.ReadLine();
+            int edeptid = Convert.ToInt32(Console.ReadLine());
+            // cmd = new SqlCommand("insert int tblEmployee values('Reema',3800.54,'Male',3));
+            cmd = new SqlCommand("insert into tblEmployee values(@ename,@esal,@egender,@edeptid)");
+            cmd.Parameters.AddWithValue("@ename", ename);
+            cmd.Parameters.AddWithValue("@esal", esal);
+            cmd.Parameters.AddWithValue("@egender", egender);
+            cmd.Parameters.AddWithValue("@edeptid", edeptid);
+            cmd.Connection = con;
+           int rowcount= cmd.ExecuteNonQuery();
+            if(rowcount>0)
+            {
+                Console.WriteLine("Successfully inserted");
+            }
+            else
+                Console.WriteLine("No data inserted");
+
+        }
+        
+       
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            // p.DataSelect();
+            p.DataInsert();
+            p.DataSelect();
+            Console.Read();
+        }
+    }
+}

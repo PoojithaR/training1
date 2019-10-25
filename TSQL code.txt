@@ -1,0 +1,91 @@
+while example
+
+declare @tot int
+set @tot=0
+while @tot<5
+begin
+Print 'Total='+convert(nvarchar(10),@tot)
+set @tot=@tot+1
+if(@tot = 3)
+break
+end
+
+
+-- goto example
+
+Declare @Var Int;  
+Set @Var=1  
+Print 'Goto exercise'  
+If @Var%2=0  
+GOTO Label1;  
+else  
+GOTO Label2;  
+Set @Var=@Var+1;  
+Label1:  
+Print 'Var Is Odd'  
+Label2:  
+Print 'Var Is Even' 
+
+--Throw and raise 
+
+Declare @val1 int;  
+Declare @val2 int;  
+BEGIN TRY  
+Set @val1=8;  
+Set @val2=@val1%2;   
+if @val1=1  
+Print ' Error Not Occured'  
+else  
+Begin  
+Print 'Error Occured';  
+Throw 60000,'Number Is Even',5 --(error number, message, state) 
+End  
+  
+END TRY  
+BEGIN CATCH  
+Print 'Error  is:'  
+Print Error_Message()  
+END CATCH   
+
+drop table EmployeeAudit
+
+create table EmployeeAudit
+(Info nvarchar(300))
+
+select * from EmployeeAudit
+
+alter trigger TrigAudit
+on tblEmployee
+for insert
+as
+begin
+declare @id int
+select * from inserted
+select @id = ID from inserted
+insert into EmployeeAudit
+values('New Employee with ID'+
+cast(@id as nvarchar(4))+'is added at'+
+cast(GetDate() as nvarchar(10)))
+end
+
+insert into tblEmployee
+values('Testdata',1000,'others',4)
+
+select * from EmployeeAudit
+select * from inserted
+
+alter trigger TrigAudit1
+on tblEmployee for delete
+as
+begin
+declare @id int
+select * from deleted
+select @id=ID from deleted
+insert into EmployeeAudit
+values('An Existing Employee with ID'+
+cast(@id as nvarchar(4))+'is deleted at'+
+cast(GetDate() as nvarchar(30)))
+end
+
+delete from tblEmployee
+where ID=14

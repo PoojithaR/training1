@@ -1,0 +1,51 @@
+Set 2 - SQL assignment
+
+1.Create a table with proper field names and data types with respect to table name.
+( Other than EMP and DEPT  table structure)
+
+2.Write a query to display all employees’ information from emp table those who hired in 
+year 81 (3-4 Different ways)
+
+3.Copy empno, ename of all salaried employees from emp table those who are working in deptno 10 into new table called emp10.
+
+4.Display the total salary drawn by ANALYST’S working in department number 20 from EMP table.
+5.Write a query to display all employees’ information from emp table where employee ename should contain ‘A’ and ‘I’ without ‘E’
+6.Delete all ename’s those who are not earning any COMM from EMP table.
+7.Display name, salary, hra, pf, da, total salary for each employee. The output should be in the descending order of total salary. Calculate  hra as 15% of salary, da as 10% of salary, pf  as 5% salary, total salary will be(salary+hra+da)-pf.
+8.Write a query to display all employee information from where ename contains 5 or more characters.
+
+
+Set 3 - SQL assignment
+ 
+ Note: Consider the EMP and DEPT tables for the following queries. 
+1. Retrieve a list of MANAGERS. 
+2. Find out salary of both MILLER and SMITH. 
+3. Find out the names and salaries of all employees earning more than 1000 per month. 
+4. Display the names and salaries of all employees except JAMES. 
+5. Find out the details of employees whose names begin with ‘S’. 
+6. Find out the names of all employees that have ‘A’ anywhere in their name. 
+7. Find out the names of all employees that have ‘L’ as their third character in their name. 
+8. Find out the names of the employees whose name begin with ‘A’ or ‘M’. 
+9. Compute yearly salary of SMITH. 
+10. Compute daily salary of JONES. 
+11. Calculate the total monthly salary of all employees. 
+12. Print the average annual salary. 
+13. Select the name, job, salary, department number of all employees except SALESMAN from department number 30. 
+14. List unique departments of the EMP table. 
+15. List the name and salary of employees who earn more than 1500 and are in department 10 or 30. Label the columns Employee and Monthly Salary respectively.
+16. List the name and salary for all employees whose salary is not in the range of 1500 and 2850. 
+17. Display the name and job of all employees who do not have a MANAGER. 
+18. Display the name, job, and salary of all the employees whose job is MANAGER or ANALYST and their salary is not equal to 1000, 3000, or 5000. 
+19. Display the name, salary and commission for all employees whose commission amount is greater than their salary increased by 10%. 
+20. Display the name of all employees who have two Ls in their name and are in department 30 or their manager is 7782. 
+21. Display the names of employees with experience of over 10 years and under 20 yrs. Count the total number of employees. 
+22. Retrieve the names of departments in ascending order and their employees in descending order. 
+23. Find out experience of MILLER. 
+24. How many different departments are there in the employee table. 
+25. Find out which employee either work in SALES or RESEARCH department. 
+26. Print the name and average salary of each department. 
+27. Select the minimum and maximum salary from employee table. 
+28. Select the minimum and maximum salaries from each department in employee table. 
+29. Select the details of employees whose salary is below 1000 and job is CLERK. 
+  
+

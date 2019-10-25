@@ -1,0 +1,198 @@
+using System.Data.SqlClient;
+
+namespace ADOEg
+{
+    class Program 
+    {
+       static SqlConnection con;
+        static SqlDataReader dr;
+        SqlCommand cmd;
+        //  string connectiondetails = "\\infch03197"
+        public SqlConnection getConnection()
+        {
+            con = new SqlConnection("data source=.;initial catalog=dbstudy;user id=sa;password=newuser123#");
+            con.Open();
+            return con;
+        }
+        public void DataSelect()
+        {
+        con = getConnection();
+           cmd = new SqlCommand("select * from tblEmployee",con);
+            dr = cmd.ExecuteReader();
+
+            while(dr.Read())
+            {
+                Console.WriteLine("Employee id :" + dr[0]);
+                Console.WriteLine();
+                Console.WriteLine("Employee name: " + dr[1]);
+                Console.WriteLine();
+                Console.WriteLine("Salary :" + dr[2]);
+                Console.WriteLine();
+                Console.WriteLine("Gender :" + dr[3]);
+                Console.WriteLine();
+                Console.WriteLine("Department Id :" + dr[4]);
+            }
+            Console.Read();
+        } 
+
+        public void DataInsert()
+        {
+            con = getConnection();
+            Console.WriteLine("Please enter name, salary, gender, deptid for the employee");
+            string ename = Console.ReadLine();
+            float esal = float.Parse(Console.ReadLine());
+            string egender = Console.ReadLine();
+            int edeptid = Convert.ToInt32(Console.ReadLine());
+            // cmd = new SqlCommand("insert int tblEmployee values('Reema',3800.54,'Male',3));
+            cmd = new SqlCommand("insert into tblEmployee values(@ename,@esal,@egender,@edeptid)");
+            cmd.Parameters.AddWithValue("@ename", ename);
+            cmd.Parameters.AddWithValue("@esal", esal);
+            cmd.Parameters.AddWithValue("@egender", egender);
+            cmd.Parameters.AddWithValue("@edeptid", edeptid);
+            cmd.Connection = con;
+           int rowcount= cmd.ExecuteNonQuery();
+            if(rowcount>0)
+            {
+                Console.WriteLine("Successfully inserted");
+            }
+            else
+                Console.WriteLine("No data inserted");
+
+        }
+        
+public void DeleteProc()
+        {
+            con = getConnection();
+            Console.WriteLine("Enter Ecode");
+            string Id = Console.ReadLine();
+         cmd = new SqlCommand("select * from tblEmployee where Id=@Id");
+            cmd.Parameters.AddWithValue("@Id", Id);
+            cmd.Connection = con;
+             dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                for (int i = 0; i < dr.FieldCount; i++)
+                {
+                    Console.WriteLine(dr[i]);
+                }
+            }
+            con.Close();
+            Console.WriteLine("Are you sure to delete this Employee y/n");
+            string status = Console.ReadLine();
+            if (status == "y" || status == "Y")
+            {
+                cmd = new SqlCommand("Delete tblEmployee Where Id=@Id", con);
+                cmd.Parameters.AddWithValue("@Id", Id);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                Console.WriteLine("Record Deleted Successfully");
+            }
+
+        }
+
+        private void SelectProc()
+        {
+            con = getConnection();
+            Console.WriteLine("Please Enter the Emp Code ");
+           int csvariable = Convert.ToInt32(Console.ReadLine());
+            //cmd = new SqlCommand("select *  from Product ");
+            cmd = new SqlCommand("getselectedemp", con);
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@eid", csvariable));
+
+            dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Console.WriteLine(dr[0]+" | "+dr[1]+" | "+dr[2]+" | "+dr[3]);
+                Console.WriteLine("Emp name is : " + dr[0]);
+                Console.WriteLine("Emp Name is : " + dr[1]);
+                Console.WriteLine("Emp Salary is : " + dr[2]);
+                Console.WriteLine("Emp Department is : " + dr[4]);
+            }
+
+        }
+
+     public void Disconselect()
+        {
+            con = getConnection();
+            cmd = new SqlCommand("select * from tblEmployee; select * from tblDepartment", con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            ds = new DataSet();
+            da.Fill(ds);//Filled Data Set having all the results of cmd
+                        // ds.Tables[0] means the first Table from the command executed
+            con.Close();
+
+            DataTable dt = ds.Tables[0];
+            DataTable dt1 = ds.Tables[1];
+            foreach (DataRow dr in dt.Rows)
+            {
+                foreach (var item in dr.ItemArray)
+                {
+                    Console.WriteLine(item);
+
+                }
+                Console.ReadKey();
+            }
+                    foreach (DataRow dr1 in dt1.Rows)
+                {
+                    foreach (var items in dr1.ItemArray)
+                    {
+                        Console.WriteLine(items);
+
+                    }
+                    Console.ReadKey();
+                    
+
+
+                }
+
+        }
+ //function to call stored procedure with output parameter
+        public static void Storedproc()
+        {
+            con = getcon();
+            Console.WriteLine("Please Enter the Emp Code ");
+            string csvariable = Console.ReadLine();
+            //cmd = new SqlCommand("select *  from Product ");
+            cmd = new SqlCommand("prcgetsal", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+           // cmd.Parameters.Add(new SqlParameter("@ecode", SqlDbType.NVarChar, 0, "ecode"));
+
+          //  cmd.Parameters.Add(new SqlParameter("@salary", SqlDbType.Float, 50, "salary"));
+            cmd.Parameters.AddWithValue("@inParam", csvariable).Direction = System.Data.ParameterDirection.Input;
+
+          //  cmd.Parameters.Add("@outParam", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+
+           // cmd.Parameters.Add("@retParam", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.ReturnValue;
+
+            // Execute the command
+
+            cmd.ExecuteNonQuery();
+
+
+
+            // Get the values
+
+            //int retval = (int)cmd.Parameters["@retParam"].Value;
+
+            int outval = (int)cmd.Parameters["@outParam"].Value;
+
+            Console.WriteLine("Employee salary is {0}", outval);
+
+            //Console.WriteLine("Return value: {0}, Out value: {1}", retval, outval);
+
+            con.Close();
+        }
+
+
+        static void Main(string[] args)
+        {
+            Program p = new Program();
+            // p.DataSelect();
+            p.DataInsert();
+            p.DataSelect();
+            Console.Read();
+        }
+    }
+}

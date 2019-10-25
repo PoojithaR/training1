@@ -1,0 +1,119 @@
+
+-----Indexers------
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Indexerseg
+{
+    class Flower
+    {
+        string name;
+        string color;
+
+        public Flower(string name, string color)
+        {
+            this.name = name;
+            this.color = color;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine(name + " " + "is" + " " + color);
+        }
+    }
+    class Flowervase
+    {
+       Flower[] fl = new Flower[5];
+
+        public Flower this[int pos]
+        {
+            get { return fl[pos]; }
+            set { fl[pos] = value; }
+        }
+
+        public static void Main()
+        {
+            Flowervase fv = new Flowervase();
+            fv[0] = new Flower("Rose", "Red");
+            fv[1] = new Flower("Lilly", "White");
+            fv[2] = new Flower("Hibiscus", "Rose");
+            fv[3] = new Flower("Chrysanthamum", "Yellow");
+            fv[4] = new Flower("Lotus", "Pink");
+            for(int i=0; i<5; i++)
+            {
+                fv[i].Display();
+            }
+            Console.Read();
+        }
+    }
+}
+
+
+
+-------------------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Indexerseg
+{
+    class indexer
+    {
+        string[] books = new string[3];
+       
+        public string this[int flag]
+        {
+            get
+            { string temp = books[flag];
+              return temp; 
+            }
+            set
+            {
+                books[flag] = value;
+            }
+        }
+
+        public string this[float f]
+        {
+            get
+            {
+                string temp = books[1];
+                return temp;
+            }
+            set
+            {
+                books[1] = value;
+            }
+        }
+        public string this[string f]
+        {
+            get
+            {
+                string temp = books[2];
+                return temp;
+            }
+            set
+            {
+                books[2] = value;
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            indexer idx = new indexer();
+            idx[0] = "MS SQL";
+            idx[1] = "CSHARP";
+            idx[2] = "ADO.NET";
+            Console.WriteLine(idx[0] + idx[1] + idx[2]);
+            Console.Read();
+        }
+    }
+}

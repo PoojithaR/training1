@@ -1,0 +1,90 @@
+
+1. <!DOCTYPE html>
+ <!--Javascript example with Variables-->
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <h2>What Can JavaScript Do?</h2>
+
+    <p id="num">JavaScript can change HTML content.</p>
+    <p id="str">name</p>
+    <p id="obj"> object</p>
+    <div id="num"> Number</div>
+    <div id="str">String</div>
+    <div id="obj">Object</div>
+
+    <script>
+        var length = 16;    //number
+        var lastName = "Johnson"; //string
+        var x = { firstName: "John", lastName: "Doe" }; //object
+        document.getElementById("num").innerHTML = length;
+        document.getElementById("str").innerHTML = lastName;
+        document.getElementById("obj").innerHTML = x.firstName + "  " + x.lastName;
+
+    </script>
+
+
+    <button type="button" onclick="document.getElementById('num').innerHTML = length">Click Me!</button>
+    <br />
+    <button type="button" onclick="document.getElementById('obj').innerHTML = x.firstName + x.lastName">Click Me for obj!</button>
+    <br />
+    <button type="button" onclick="document.getElementById('str').inerHTMLn = lastName">Click Me for Name!</button>
+
+
+
+</body>
+</html>
+
+
+2.  <!--Javascript example on User Input-->
+
+ <!--<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+    <div id='result'></div>
+    <input id='userInput' size=20> <button onClick='userSubmit()'>Submit</button><br />
+
+    <script type='text/javascript'>
+        function userSubmit() {
+            var UI = document.getElementById('userInput').value;
+            document.getElementById('result').innerHTML = 'You typed: ' + UI;
+        }
+    </script>
+</BODY>
+</HTML>-->
+
+<!--Javascript example on Event-->
+<!--<html>
+<head>
+</head>
+<body>
+    <div id='feedback' onClick='goodbye()'>Users without Javascript see this.</div>
+    <p>Hello all, lets us learn simple Java scripts</p>
+    <script type='text/javascript'>
+    document.getElementById('feedback').innerHTML = 'Hello World!';
+        function goodbye()
+        {
+            document.getElementById('feedback').innerHTML = 'Goodbye World!';
+           
+        }
+    </script>
+
+</body>
+</html>-->
+
+3. <!--<html>
+<head>
+</head>
+<body>
+    <div id='feedback'></div>
+    <script type='text/javascript'>
+        document.getElementById('feedback').innerHTML = '<P><font color=green>Hello World!</font>';
+    </script>
+</body>
+</html>-->

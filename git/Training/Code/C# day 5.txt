@@ -1,0 +1,174 @@
+// exception example
+
+class Program
+    {
+        static void Main(string[] args)
+        {
+            int a, b, c;
+            try
+            {
+                Console.WriteLine("Enter 2 Nos.");
+                a = Convert.ToInt32(Console.ReadLine());
+                b = int.Parse(Console.ReadLine());
+                c = a / b;
+                Console.WriteLine(c);
+                int[] arr = { 2, 5, 6, 8 };
+                Console.WriteLine(arr[6]);
+                Console.Read();
+            }
+
+            
+            //catch (DivideByZeroException e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //    Console.Read();
+            //}
+            //catch (IndexOutOfRangeException e)
+            //{
+            //    Console.WriteLine(e.Message);
+            //    Console.Read();
+            //}
+            catch (Exception e)
+            {
+                Console.WriteLine("Some Exception occured, please rectify..");
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.Source);
+                Console.WriteLine(e.HelpLink);
+                Console.WriteLine(e.StackTrace);
+                Console.Read();
+            }
+
+        }
+    }
+}
+
+// custom or userdefined exception
+
+namespace UserdefinedException
+{
+    class VotingEx : ApplicationException
+    {
+        public VotingEx(String msg):base(msg)
+        {
+         
+        }
+    }
+    class UserdefinedException
+    {
+        int Age;
+        public void accept()
+        {
+            Console.WriteLine("Enter Age :");
+            Age = Convert.ToInt32(Console.ReadLine());
+            if (Age < 18)
+            {
+                throw (new VotingEx("Age should be Greater Than 18"));
+            }
+            else
+            {
+                Console.WriteLine("Thanks for Voting");
+                Console.Read();
+                
+            }
+        }
+
+
+    }
+
+Collections example
+
+//    SortedList sl = new SortedList();
+        //    sl.Add("Ora", "Oracle");
+        //    sl.Add("VB", "Visual Basic");
+        //    sl.Add("C#", "CSHARP");
+        //    sl.Add("Rdbms", "MSSql");
+
+        //    foreach (DictionaryEntry de in sl)
+        //    {
+        //        Console.WriteLine(de.Key + " " + de.Value);
+        //        Console.WriteLine();
+        //    }
+        //    Console.Read();
+         Stack st = new Stack();
+            st.Push(1);
+            st.Push(2);
+            st.Push(3);
+
+            foreach (Object obj in st)
+            {
+                Console.WriteLine(obj);
+            }
+    Console.Read();
+          //  Console.WriteLine("The number of Elements in the stack are" + st.Count);
+            Console.WriteLine();
+            st.Pop();
+            foreach (Object obj in st)
+            {
+                Console.WriteLine(obj);
+                Console.Read();
+            }
+Console.Read();
+        }
+
+
+    }
+}
+
+//ArrayList al = new ArrayList();
+            //al.Add(10);
+            //al.Add(4);
+            //al.Add(7);
+            //al.Add(1);
+            //al.Add(300);
+            //al.Add(9);
+            // al.RemoveAt(1);
+            // al.Insert(3, "New Value");
+            //ArrayList a2 = new ArrayList();
+            //a2.AddRange(al);
+            //foreach (var i in a2)
+            //{
+            //    Console.WriteLine(i);
+            //}
+            //Console.Read();
+            //al.Sort();
+            //foreach (var i in al)
+            //{
+            //    Console.WriteLine(i);
+            //    Console.Read();
+            //}
+          //  Console.Read();
+            Hashtable ht = new Hashtable();
+            ht.Add("E001", "Errol");
+            ht.Add("E0012", null);
+            ht.Add("E003", "Yamini");
+            ht.Add("E0040", "Shriya");
+            ht.Add("E005", "Shanmugeswari");
+            ht.Add("E0015", 12);
+            //foreach(DictionaryEntry de in ht)
+            //{
+            //    Console.WriteLine(de.Key);
+            //    Console.WriteLine(de.Value);
+            //    Console.WriteLine();
+            //}
+            //foreach (var v in ht.Values)
+            //{
+            //    Console.WriteLine(v);
+            //}
+//Console.Read();
+            Console.WriteLine("Enter a Key to search");
+            string k = Console.ReadLine();
+            if(ht.ContainsKey(k))
+            {
+                Console.WriteLine("key is" + ht[k]);
+                Console.Read();
+            }
+            else
+            
+                Console.WriteLine("Key does not exists");
+            
+            Console.Read();
+
+        }
+
+    }
+}

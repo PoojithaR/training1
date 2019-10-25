@@ -1,0 +1,75 @@
+9.	Create a class Employee and  child classes Manager and   
+Clerk
+
+Employee:
+Instance Variables: name, empId, salary.
+
+Methods: set and get methods for name, empId, getSalary,setSalary Method
+
+Manager:
+Instance Variables: type
+Methods: setSalary()
+
+Clerk:
+Instance Variables: int speed, int accuracy
+Methods: setSalary()
+
+Provide constructors for all classes. Create a general class “MyClass”. In this class create objects of Manager, Clerk and Employee classes.Set the name, empId and salary attributes for each object, and accordingly display them.
+
+10.	Create a class Student and the child classes DayScholar and 
+Hosteller
+
+
+    Student :
+  Instance Variables: studId : int , studName :String ,   
+  examFee:double
+  Methods: displayDetails(): void , payFee() :double
+
+ Provide suitable constructors
+
+DayScholar :
+
+Instance Variables : transportFee:double , Methods: Provide suitable constructors.
+
+Hosteller :
+
+Instance Variables: hostelFee :double
+
+Methods: Provide suitable constructors
+
+Create  a  general  class  “RunClass”.  In this create two objects for each DayScholar and Hosteller classes. Invoke payFee() method with suitable amount and obtain the remaining amount to be paid.
+11.
+  a) Create a class Student that has:
+
+Instance Variables: name, class
+
+Methods:  getPercentage( ), static getTotalNoStudents( )
+
+Constructors: Initialize name and class
+
+
+B). Create a class Science Student that inherits from Student
+
+Instance Variables:  phisicsMarks, chemistryMarks, mathsMarks
+
+Class Variable: noOfStudents
+
+Get Percentage Method: Computes and returns the percentage of marks
+
+(Max marks for a subject :100)
+
+
+c). Create a class History Student that inherits from Student
+
+Instance Variables:  historyMarks, civicsMarks (Max Marks for a subject: 100)
+
+Class Variables: noOfStudents
+
+Get Percentage Method: Computes and returns the percentage of marks
+
+(Max marks for a subject :100)
+
+
+d). Create a general class All Students. In this class create some history, science students. Assign marks. Show the percentage of marks for each student. Also find the total number of students.
+
+

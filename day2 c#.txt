@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAY2_ayushi
+{
+    class Program
+    {
+
+        class accounts
+        {
+            public int acc_no;
+            public string name;
+            public string acc_type;
+            public string tran_type;
+            public float amount, balance;
+            public float credit(float amount)
+            {
+                return balance + amount;
+            }
+            public float debit(float amount)
+            {
+                return balance - amount;
+            }
+            public accounts() : this(0000,"    ","saving","deposit",0000,0000)
+            {
+            }
+            public accounts(int a,string b,string c,string d,float e,float f)
+            {
+                acc_no = a;
+                name = b;
+                acc_type = c;
+                tran_type = d;
+                amount = e;
+                balance = e;
+            }
+            public void showdata()
+            {
+               // Console.WriteLine("enter the details ");
+                Console.WriteLine("account number is {0}", acc_no);
+                Console.WriteLine("name of account holder is {0}", name);
+                Console.WriteLine("account type is {0}", acc_type);
+                Console.WriteLine("transaction done is {0}", tran_type);
+                Console.WriteLine("amount transacted is {0}", amount);
+                Console.WriteLine("balance is {0}", balance);
+                Console.ReadLine();
+            }
+        }
+        static void Main(string[] args)
+        {
+            accounts a = new accounts();
+            float bal;
+            accounts a1 = new accounts(1100, "ayushi", "saving", "withdrawl", 100000, 100000);
+            accounts a2 = new accounts();
+            Console.WriteLine("enter the details of account holder");
+            a2.acc_no = Convert.ToInt32(Console.ReadLine());
+            a2.name = Console.ReadLine();
+            a2.acc_type = Console.ReadLine();
+            a2.tran_type = Console.ReadLine();
+            a2.amount = Convert.ToInt32(Console.ReadLine());
+            a2.balance = Convert.ToInt32(Console.ReadLine());
+            if (a2.tran_type == "deposit")
+            {
+                bal = a2.credit(a2.amount);
+                a2.showdata();
+                Console.WriteLine(" new balance is {0}", bal);
+                Console.ReadLine();
+            }
+             
+            else
+            {
+                bal = a2.debit(a2.amount);
+                a2.showdata();
+                Console.WriteLine(" new  balance is {0}", bal);
+                Console.ReadLine();
+            }
+            //a1.showdata();
+        }
+    }
+}

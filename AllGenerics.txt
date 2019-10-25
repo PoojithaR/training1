@@ -1,0 +1,37 @@
+ class AllGenerics<T>
+    {
+        T genmember;
+
+        public AllGenerics(T gval)
+        {
+            genmember = gval;
+        }
+        public T genericMethod(T genparameter)
+        {
+            Console.WriteLine("Parameter type is {0}, " +
+           "Value of the Datamenber is {1}", typeof(T).ToString(), genparameter,
+           genmember);
+            return genmember;
+        }
+
+    }
+    class Emp
+    {
+        int empid;
+        string name;
+    }
+
+    class Alltester
+    {
+        public static void Main()
+        {
+            AllGenerics<int> agc = new AllGenerics<int>(10);
+            int retval = agc.genericMethod(200);
+           // AllGenerics<string> agcs = new AllGenerics<string>("Hello Generics");
+          //  string strval = agcs.genericMethod("C#");
+            Console.Read();
+
+
+        }
+    }
+}

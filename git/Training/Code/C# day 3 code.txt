@@ -1,0 +1,197 @@
+
+//property example--
+
+class Student
+    {
+       string stdid;
+       string name;
+       int age;
+
+        public string Stdid
+        {
+            get { return stdid; }
+            set { stdid = value; }
+
+        }
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            set { age = value; }
+        }
+        public void Showdata()
+        {
+            Console.WriteLine("The Studenta details are :{0} (1} (2}", stdid, name, age);
+        }
+    }
+
+    class propertyuser
+    {
+        public static void Main()
+        {
+            Student stud1 = new Student();
+            stud1.Stdid = "S001";
+            stud1.Name = "Prabha";
+            stud1.Age = 20;
+            Console.WriteLine("Student Info : {0}{1}{2}", stud1.Stdid,stud1.Name,stud1.Age);
+            stud1.Age += 2;
+            Console.WriteLine("Student Info : {0}{1}{2}", stud1.Stdid, stud1.Name, stud1.Age);
+            Console.Read();
+            
+        }
+    }
+}
+-------------------------------------------
+// Inheritance
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OOPrograming
+{
+    class Student
+    {
+       int Rollno;
+      string Name;
+       string Class;
+
+        public void Getdata()
+        {
+            Console.WriteLine("Enter student details please:");
+            Rollno = Convert.ToInt32(Console.ReadLine());
+            Name = Console.ReadLine();
+            Class = Console.ReadLine();
+        }
+        public void Putdata()
+        {
+            Console.WriteLine("The info is :{0}{1}{2}", Rollno, Name, Class);
+        }
+    }
+
+    class Marks:Student
+    {
+        protected int[] submarks =new int[5];
+        public void GetMarks()
+        {
+            for(int i=0;i<submarks.Length;i++)
+            {
+                Console.WriteLine("Enter Subject{0}s Marks", i + 1);
+                submarks[i] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+        public void PutMarks()
+        {
+            for (int i = 0; i < submarks.Length; i++)
+            {
+               // Console.WriteLine("Enter Subject{0}s Marks", i + 1);
+              Console.WriteLine("Marks in subject{0}{1} is", i+1, submarks[i]);
+            }
+
+        }
+        class tester
+        {
+            public static void Main()
+            {
+                Marks m = new Marks();
+                m.Getdata();
+                m.Putdata();
+                m.GetMarks();
+                m.PutMarks();
+                Console.ReadLine();
+            }
+        }
+
+    }
+}
+--------------------------------------------
+
+/// Internal, private , public access specifier
+
+using System;
+
+namespace OOPrograming
+{
+ class Employee
+    { 
+ 
+        int Empid;
+        internal string Name;
+        float Salary;
+
+        public Employee()
+        {
+            Empid = 1;
+            Name = "Rekha";
+            Salary = 12500.75f;
+        }
+        public Employee(int Empid, string Name, float Salary)
+        {
+            this.Empid = Empid;
+            this.Name = Name;
+            this.Salary = Salary;
+
+        }
+        ~Employee()
+        {
+            Console.WriteLine("Bye Employee");
+            Console.Read();
+        }
+        public void accept()
+        {
+            Empid = Convert.ToInt32(Console.ReadLine());
+            Name = Console.ReadLine();
+            Salary = float.Parse(Console.ReadLine());
+        }
+        internal void show()
+        {
+            Console.WriteLine("Details of the Employee are :{0} {1} {2}", Empid, Name, Salary);
+        }
+        public static void Main()
+        {
+            Employee E1 = new Employee();
+            E1.show();
+            Console.Read();
+            E1 = null;
+            Console.Read();
+            //E1.accept();
+            // E1.show();
+        }
+    }
+    //class ParttimeEmployee
+    //{
+    //    public void accept()
+    //    {
+    //        Employee Test = new Employee();
+    //        Test.Name = "Partimer";
+    //        Console.WriteLine(Test.Name);
+    //        Test.accept();
+    //        Test.show();
+
+    //    }
+}
+            //}
+            //class Program
+            //{
+            //    static void Main(string[] args)
+            //    {
+            //        Employee E1 = new Employee();
+            //        E1.Name = "BANUREKHA";
+            //        E1.accept();
+            //        E1.show();
+            //        Employee E2 = new Employee(2, "Margarett", 10578.65f);
+            //        E2.show();
+            //        ParttimeEmployee pe = new ParttimeEmployee();
+            //        pe.accept();
+            //        Console.Read();
+            //    }
+        
+
+      
+    
